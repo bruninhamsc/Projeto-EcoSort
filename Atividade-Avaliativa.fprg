@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="Atividade-Avaliativa"/>
+        <attribute name="authors" value="Aluno"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2026-06-10 12:32:00 "/>
+        <attribute name="created" value="QWx1bm87RVNOMTIyRDEyMjkyNTE7MjAyNi0wNi0xMDsiMDg6NTU6MDggIjsyNTE0"/>
+        <attribute name="edited" value="QWx1bm87RVNOMTIyRDEyMjkyNTE7MjAyNi0wNi0xMDsiMTI6MzI6MDAgIjszOzI2MDY="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="i" type="Integer" array="False" size=""/>
+            <declare name="tipoDestino" type="Integer" array="False" size=""/>
+            <declare name="pesoAtual" type="Real" array="False" size=""/>
+            <declare name="freteAtual" type="Real" array="False" size=""/>
+            <declare name="cargaTotal" type="Real" array="False" size=""/>
+            <declare name="FaturamentoTotal" type="Integer" array="False" size=""/>
+            <declare name="ticketMedio" type="Real" array="False" size=""/>
+            <assign variable="cargaTotal" expression="0"/>
+            <assign variable="faturamentoTotal" expression="0"/>
+            <declare name="pesos" type="Real" array="True" size="10"/>
+            <declare name="fretes" type="Real" array="True" size="10"/>
+            <output expression="&quot;Ol&#225;! Sou o motor a prova de erros,vamos come&#231;ar os registros.&quot;" newline="True"/>
+            <for variable="i" start="0" end="9" direction="inc" step="1">
+                <do expression="pesoAtual &lt;= 0">
+                    <output expression="&quot;Porfavor me informe o peso da caixa:&quot;" newline="True"/>
+                    <input variable="pesoAtual"/>
+                </do>
+                <do expression="tipoDestino != 1 &amp;&amp; tipoDestino != 2">
+                    <output expression="&quot;Agora me diga qual o destino desse produto? 1- Nacional e 2- Internacional&quot;" newline="True"/>
+                    <input variable="tipoDestino"/>
+                </do>
+                <if expression="pesoAtual &lt;= 2">
+                    <then>
+                        <assign variable="freteAtual" expression="10.00"/>
+                    </then>
+                    <else>
+                        <if expression="pesoAtual &lt;= 10">
+                            <then>
+                                <assign variable="freteAtual" expression="20.00"/>
+                            </then>
+                            <else>
+                                <assign variable="freteAtual" expression="30.00"/>
+                            </else>
+                        </if>
+                    </else>
+                </if>
+                <if expression="tipoDestino == 2">
+                    <then>
+                        <assign variable="freteAtual" expression="freteAtual * 0.2"/>
+                    </then>
+                    <else/>
+                </if>
+                <assign variable="pesos[i]" expression="pesoAtual"/>
+                <assign variable="fretes[i]" expression="freteAtual"/>
+                <assign variable="cargaTotal" expression="cargaTotal + pesoAtual"/>
+                <assign variable="faturamentoTotal" expression="faturamentoTotal + freteAtual"/>
+            </for>
+            <assign variable="ticketMedio" expression="faturamentoTotal / 10"/>
+            <output expression="&quot;========== RESULTADO FINAL ==========&quot;" newline="True"/>
+            <output expression="&quot;Total de pacotes: &quot; &amp; i" newline="True"/>
+            <output expression="&quot;Carga total acumulada: &quot; &amp; cargaTotal &amp; &quot;kg&quot;" newline="True"/>
+            <output expression="&quot;Faturamento broto do lote: R$ &quot; &amp; faturamentoTotal" newline="True"/>
+            <output expression="&quot; Ticket m&#233;dio por pacote: R$ &quot; &amp; ticketMedio" newline="True"/>
+            <output expression="&quot;==============================&quot;" newline="True"/>
+        </body>
+    </function>
+</flowgorithm>
